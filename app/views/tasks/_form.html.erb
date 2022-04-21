@@ -14,9 +14,7 @@
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
+  
     <%= form.label :content %>
     <%= form.text_area :content %>
     <%= form.date_field :deadline, placeholder: 'Deadline' %>
@@ -25,6 +23,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Create Task" %>
   </div>
 <% end %>
