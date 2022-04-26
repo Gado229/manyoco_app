@@ -2,16 +2,24 @@ FactoryBot.define do
   factory :task do
     title { 'title_test' }
     content { 'content test 1' }
-    deadline { '2022-03-30 20:00:00' }
-    status { 'started' }
-    priority { 'low' }
+    deadline { DateTime.now }
+    status { 0 }
+    priority { 1 }
   end
 
   factory :second_task, class: Task do
     title { 'test 2' }
     content { 'content test 2' }
-    deadline { '2022-03-30 20:00:00' }
-    status { 'started' }
-    priority { 'low' }
+    deadline { DateTime.now +1 }
+    status { 1 }
+    priority { 2 }
   end
+
+  factory :third_task, class: Task do
+      title { 'task 3' }
+      content { 'content test 3' }
+      deadline { DateTime.now +2 }
+      status { 2 }
+      priority { 0 }
+     end
 end
