@@ -44,7 +44,7 @@ end
      end
   end
 describe 'Detailed tasks List' do
-context 'When tasks are arranged in descending order of creation date and time' do
+  context 'When tasks are arranged in descending order of creation date and time' do
     it 'list tasks sorted in descending order of creation date' do
       visit tasks_path
       click_on 'sort by end deadline'
@@ -52,4 +52,46 @@ context 'When tasks are arranged in descending order of creation date and time' 
     end
   end
  end
+ context 'When searching with the scope method' do
+      it "You can search for titles with the scope method" do
+        visit root_path
+        fill_in 'search_title', with: 'title_test'
+        click_on 'search'
+        # expect(Task.get_by_taskname('task').count).to eq 1
+        expect(page).to have_content 'title_test'
+      end
+      it "You can search the status with the scope method" do
+        visit root_path
+        select 'started', from: 'search_status'
+        click_on 'search'
+        expect(page).to have_content 'title_test'
+      end
+      it "You can search the priority with the scope method" do
+       visit root_path
+        select 'medium', from: 'search_priority'
+       click_on 'search'
+        expect(page).to have_content 'test 1'
+      end
+      it "Both title and status can be searched with the scope method" do
+        visit root_path
+        fill_in 'search_title', with: 'test 2'
+        select 'pending', from: 'search_status'
+        click_on 'search'
+        expect(page).to have_content 'test 2'
+      end
+      it "Both title and priority can be searched with the scope method" do
+        visit root_path
+        fill_in 'search_title', with: 'test 2'
+        select 'medium', from: 'search_priority'
+        click_on 'search'
+        expect(page).to have_content 'test 2'
+      end
+      it "Both status and priority can be searched with the scope method" do
+        visit root_path
+        select 'started', from: 'search_status'
+        select 'high', from: 'search_priority'
+        click_on 'search'
+        expect(page).to have_content 'Task'
+      end
+    end
 end
