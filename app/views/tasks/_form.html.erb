@@ -2,7 +2,6 @@
   <% if task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
       <ul>
         <% task.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -14,12 +13,26 @@
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
-  
+  </div>
+
+  <div class="field">
     <%= form.label :content %>
     <%= form.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Deadline %>
     <%= form.date_field :deadline, placeholder: 'Deadline' %>
-    <%= form.select :status, ['pending','started','completed'], placeholder: 'Status' %>
-    <%= form.select :priority,['low','medium','high'], placeholder: 'Priority' %>
+  </div>
+
+  <div class="field status">
+    <%= form.label :Status %>
+    <%= form.select :status, Task.statuses.keys %>
+  </div>
+
+  <div class="field prority">
+    <%= form.label :Priority %>
+    <%= form.select :priority, Task.priorities.keys %>
   </div>
 
   <div class="actions">
