@@ -1,9 +1,5 @@
 class Task < ApplicationRecord
-  validates :title, presence: true
-  validates :content, presence: true
-  validates :deadline, presence: true
-  validates :status, presence: true
-  validates :priority, presence: true
+  validates :title, :content, null:false, presence: true, length: { minimum: 1 }
 
   enum status: {
                 started: 0,
@@ -24,4 +20,5 @@ class Task < ApplicationRecord
       scope :sort_expired, -> { order(deadline: :desc) }
       # kaminari関連
       scope :kaminari, -> (kaminari_page){ page(kaminari_page).per(5) }
+      scope :current_user_sort,->(current_user_id){where(user_id: current_user_id)}
 end

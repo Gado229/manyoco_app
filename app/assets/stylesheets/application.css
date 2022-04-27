@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+ .login_forms {
+  text-align: center;
+  justify-content: center;
+ }
