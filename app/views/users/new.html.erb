@@ -2,26 +2,23 @@
   <h4>New user registration</h4>
   <%= form_with(model: @user, local: true) do |f| %>
     <%= render 'common/error', variable: @user %>
-    <table>
-      <tr>
+      <div class="form-group">
         <td><%= f.label :name, 'Name' %></td>
-        <td><%= f.text_field :name %></td>
-      </tr>
-      <tr>
+        <td><%= f.text_field :name, class:'form-control' %></td>
+      </div>
+      <div class="form-group">
         <td><%= f.label :email, 'Email' %></td>
-        <td><%= f.email_field :email %></td>
-      </tr>
-      <tr>
+        <td><%= f.email_field :email, class:'form-control' %></td>
+      </div>
+      <div class="form-group">
         <td><%= f.label :password, 'Password' %></td>
-        <td><%= f.password_field :password %></td>
-      </tr>
-      <tr>
+        <td><%= f.password_field :password, class:'form-control' %></td>
+      </div>
+      <div class="form-group">
         <td><%= f.label :password_confirmation, 'Password confirmation' %></td>
-        <td><%= f.password_field :password_confirmation %></td>
-      </tr>
-      <tr>
-        <td><%= f.submit "Signup" %></td>
-      <tr>
-    </table>
+        <td><%= f.password_field :password_confirmation, class:'form-control' %></td>
+      </div>
+
+        <%= f.submit "Signup", class:'btn btn-primary btn-submit' %>
   <% end %>
 </div>

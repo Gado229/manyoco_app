@@ -37,20 +37,22 @@
   <table class="table">
      <thead>
        <tr>
+        <th>Author</th>
         <th>Title</th>
         <th>Content</th>
         <th>Deadline</th>
         <th>Registered at</th>
         <th>Status</th>
         <th>Priority</th>
-        <th>Author</th>
-        <th colspan="3"></th>
+        <th>Admin/User</th>
+        <th colspan="4"></th>
        </tr>
       </thead>
       <tbody>
         <% @tasks.each do |task| %>
           <tr>
-           <td class="task_row task_title"><%= task.title %></td>
+           <td><%= current_user.name %></td>
+           <td class="task_row task_title"><%= link_to task.title, task_path(task.id) %></td>
            <td><%= task.content %></td>
            <td><%= task.deadline %></td>
            <td><%= task.created_at %></td>

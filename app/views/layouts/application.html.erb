@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p>
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,7 +26,7 @@
           <%= link_to 'Tasks', tasks_path ,class:'fs-20 btn btn-primary text-light'%> |
           <%= link_to 'MyPage', user_path(current_user.id) ,class:'btn fs-20 btn-secondary text-light'%> |
           <%= link_to 'Logout', session_path(current_user.id), method: :delete, data: {confirm: 'Are you sure you want to log out?'} ,class:'btn fs-20 btn-secondary text-light'%> | |
-          <% if current_user.admin %>
+          <% if current_user.admin? %>
           <%= link_to 'Management', admin_users_path ,class:'btn fs-20 btn-outline-dark'%>
         </li>
           <% end %>

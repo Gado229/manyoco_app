@@ -1,10 +1,10 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy]
-  before_action :not_logged_in
-  before_action :not_admin_user
+  before_action :admin_only
+  PER = 8
 
   def index
-    @users = User.all.includes(:tasks)
+    @users = User.select(:id, :name, :email, :admin).order(created_at: :asc).page(params[:page]).per(PER)
   end
 
   def new
@@ -14,10 +14,16 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      flash[:success] = "new user added"
       redirect_to user_path(@user.id)
     else
+      flash.now[:danger] = "User registration failed"
       render :new
     end
+  end
+
+  def show
+    @tasks = Task.where(user_id: @user.id).page(params[:page]).per(PER)
   end
 
   def edit
@@ -25,8 +31,10 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user.id), notice: 'Changed user information'
+       flash[:success] = "update successful"
+      redirect_to admin_user_path(@user), notice: 'Changed user information'
     else
+      flash.now[:danger] = "update failed"
       render :edit
     end
   end
@@ -49,9 +57,11 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def not_admin_user
-    if current_user.admin == false
-      redirect_to root_path, notice: 'You do not have access'
+  def admin_only
+    unless current_user.admin?
+      redirect_to tasks_path, notice: 'You do not have access'
+      flash[:danger] = "only for admins！"
     end
   end
+
 end
