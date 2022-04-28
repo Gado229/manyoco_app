@@ -11,5 +11,5 @@ Rails.application.routes.draw do
       get :search
     end
   end
-  root to: 'users#new'
+  root 'users#new'
 end

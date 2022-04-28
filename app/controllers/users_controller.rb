@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
   before_action :logged_in, only: [:new, :create]
-  before_action :not_logged_in, only: [:show]
   before_action :forget_user, only: [:show]
   skip_before_action :login_required, only: [:new, :create]
 
