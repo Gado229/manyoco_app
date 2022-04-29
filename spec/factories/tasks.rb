@@ -21,5 +21,5 @@ FactoryBot.define do
       deadline { DateTime.now +2 }
       status { 2 }
       priority { 0 }
-     end
+  end
 end

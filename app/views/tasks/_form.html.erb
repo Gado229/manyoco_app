@@ -1,4 +1,5 @@
-<%= form_with(model: task, local: true) do |form| %>
+<div class="container">
+<%= form_with(model: task, local: true) do |f| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -9,33 +10,36 @@
       </ul>
     </div>
   <% end %>
-
+<div class="login_forms">
+  <h1>New Task</h1>
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= f.label :title %>
+    <%= f.text_field :title ,class:'fs-16' %>
   </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+  <div class="field f-group">
+    <%= f.label :content %>
+    <%= f.text_area :content %>
   </div>
 
-  <div class="field">
-    <%= form.label :Deadline %>
-    <%= form.date_field :deadline, placeholder: 'Deadline' %>
+  <div class="field f-group">
+    <%= f.label :Deadline %>
+    <%= f.date_field :deadline, placeholder: 'Deadline' %>
   </div>
 
-  <div class="field status">
-    <%= form.label :Status %>
-    <%= form.select :status, Task.statuses.keys %>
+  <div class="field status f-group">
+    <%= f.label :Status %>
+    <%= f.select :status, Task.statuses.keys %>
   </div>
 
-  <div class="field prority">
-    <%= form.label :Priority %>
-    <%= form.select :priority, Task.priorities.keys %>
+  <div class="field prority f-group">
+    <%= f.label :Priority %>
+    <%= f.select :priority, Task.priorities.keys %>
   </div>
 
-  <div class="actions">
-    <%= form.submit "Create Task" %>
+  <div class="field prority f-group">
+    <%= f.submit "Create Task" %> | <%= link_to 'Back', tasks_path %>
   </div>
 <% end %>
+</div>
+</div>
