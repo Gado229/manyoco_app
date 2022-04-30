@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
   has_many :tasks, dependent: :destroy
+  has_many :labels, dependent: :destroy
 
   private
 
@@ -21,7 +22,7 @@ class User < ApplicationRecord
 
   def update_action
       user = User.where(id: self.id).where(admin: true)
-    if User.where(admin: true).count == 1 && user.present? && self.admin == false
+      if User.where(admin: true).count == 1 && user.present? && self.admin == false
       errors.add(:admin, 'It cannot be removed from. At least one administrator is required')
       throw(:abort)
     end

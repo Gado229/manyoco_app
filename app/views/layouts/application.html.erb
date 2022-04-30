@@ -17,9 +17,18 @@
        font-family: cursive;
        font-size: 15px;
      }
+     select{
+       padding: 10px;
+     }
+     label{
+       font-size: 20px;
+       margin-bottom: 5px;
+       text-decoration: underline;
+       float: left;
+     }
    </style>
   <body style="background-color: #8897e3;font-family:Verdana">
-    <header class="header bg-warning shadow">
+    <header class="header shadow">
       <ul class="nav justify-content-center bg-white">
           <% if logged_in? %>
         <li>
@@ -38,6 +47,9 @@
           <%= link_to 'Login', new_session_path,class:'btn btn-outline-warning fs-20' %>
         </li>
           <% end %>
+          <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: "#{key}") %>
+          <%end%>
       </ul>
     </header>
 <%= yield %>
