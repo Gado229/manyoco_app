@@ -32,7 +32,7 @@
       <ul class="nav justify-content-center bg-white">
           <% if logged_in? %>
         <li>
-          <%= link_to 'Tasks', tasks_path ,class:'fs-20 btn btn-primary text-light'%> |
+      | | <%= link_to 'Tasks', tasks_path ,class:'fs-20 btn btn-primary text-light'%> |
           <%= link_to 'MyPage', user_path(current_user.id) ,class:'btn fs-20 btn-secondary text-light'%> |
           <%= link_to 'Logout', session_path(current_user.id), method: :delete, data: {confirm: 'Are you sure you want to log out?'} ,class:'btn fs-20 btn-secondary text-light'%> | |
           <% if current_user.admin? %>
