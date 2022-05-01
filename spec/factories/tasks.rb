@@ -5,6 +5,7 @@ FactoryBot.define do
     deadline { DateTime.now }
     status { 0 }
     priority { 1 }
+    user_id {1}
   end
 
   factory :second_task, class: Task do
@@ -13,6 +14,7 @@ FactoryBot.define do
     deadline { DateTime.now +1 }
     status { 1 }
     priority { 2 }
+    user_id {1}
   end
 
   factory :third_task, class: Task do
@@ -21,5 +23,6 @@ FactoryBot.define do
       deadline { DateTime.now +2 }
       status { 2 }
       priority { 0 }
+      user_id {1}
   end
 end

@@ -21,11 +21,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    if !current_user.admin
       if current_user.id != params[:id].to_i
         redirect_to tasks_path
       end
-    end
     @tasks = @user.tasks.ordered.kaminari(params[:page])
   end
 

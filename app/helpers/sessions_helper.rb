@@ -14,4 +14,11 @@ module SessionsHelper
     end
   end
 
+  def not_logged_in
+    unless logged_in?
+      redirect_to new_session_path
+    end
+    
+  end
+
 end
