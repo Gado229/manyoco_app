@@ -33,4 +33,5 @@ end
 
 21.times do |n|
     Label.create(name: "tag_#{n}_#{n+12}")
+    
 end
